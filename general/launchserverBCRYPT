@@ -1,0 +1,153 @@
+# 5.5.6
+
+{
+  "projectName": "ReysiCraft",
+  "mirrors": [
+    "https://mirror.gravitlauncher.com/5.5.x/",
+    "https://gravit-launcher-mirror.storage.googleapis.com/"
+  ],
+  "binaryName": "ReysiCraft",
+  "copyBinaries": true,
+  "cacheUpdates": true,
+  "env": "STD",
+  "auth": {
+      "std": {
+      "core": {
+	"type": "mysql",
+        "mySQLHolder": {
+          "address": " ",
+	  "port": 3306,
+          "username": " ",
+          "password": " ",
+	  "database": " ",
+	  "timezone":  "UTC",
+          "hikariMaxLifetime": 1800000,
+          "initializeAtStart": false
+        },
+        "passwordVerifier": {
+          "cost": 12, # обратить внимание на вес в зашифрованном пароле в phpmyadmin
+          "type": "bcrypt"
+        },
+        "expireSeconds": 3600,
+        "uuidColumn": "uuid", # собсна столбики таблички
+        "usernameColumn": "username",
+        "accessTokenColumn": "accessToken",
+        "passwordColumn": "password",
+        "serverIDColumn": "serverID",
+        "hardwareIdColumn": "hwidId",
+        "tableHWID": "hwids",
+        "tableHWIDLog": "hwidLog",
+        "table": "auth_user"
+      },
+      "textureProvider": {
+        "skinURL": "http://example.com/skins/%username%.png",
+        "cloakURL": "http://example.com/cloaks/%username%.png",
+        "type": "request"
+      },
+      "displayName": "Default",
+      "isDefault": true,
+      "visible": true
+    }
+  },
+  "protectHandler": {
+    "profileWhitelist": {},
+    "allowUpdates": [],
+    "type": "std"
+  },
+  "components": {
+    "regLimiter": {
+      "message": "Превышен лимит регистраций",
+      "excludeIps": [],
+      "exclude": [],
+      "rateLimit": 3,
+      "rateLimitMillis": 36000000,
+      "type": "regLimiter"
+    },
+    "authLimiter": {
+      "message": "Превышен лимит авторизаций",
+      "exclude": [],
+      "rateLimit": 3,
+      "rateLimitMillis": 8000,
+      "type": "authLimiter"
+    },
+    "proguard": {
+      "modeAfter": "MainBuild",
+      "dir": "proguard",
+      "jvmArgs": [
+        "-Xmx512M"
+      ],
+      "enabled": true,
+      "mappings": true,
+      "type": "proguard"
+    }
+  },
+  "launch4j": {
+    "enabled": true,
+    "setMaxVersion": false,
+    "maxVersion": "99.0.0",
+    "minVersion": "17.0.0",
+    "downloadUrl": "https://bell-sw.com/pages/downloads/?version=java-8-lts&os=Windows&package=jre-full",
+    "productName": "GravitLauncher",
+    "productVer": "5.5.6.6",
+    "fileDesc": "GravitLauncher 5.5.6",
+    "fileVer": "5.5.6.6",
+    "internalName": "Launcher",
+    "copyright": "© GravitLauncher Team",
+    "trademarks": "This product is licensed under GPLv3",
+    "txtFileVersion": "%s, build %d",
+    "txtProductVersion": "%s, build %d"
+  },
+  "netty": {
+    "fileServerEnabled": true,
+    "ipForwarding": false,
+    "disableWebApiInterface": false,
+    "showHiddenFiles": false,
+    "sendProfileUpdatesEvent": true,
+    "launcherURL": " ",
+    "downloadURL": " ",
+    "launcherEXEURL": " ",
+    "address": " ",
+    "bindings": {},
+    "performance": {
+      "usingEpoll": true,
+      "bossThread": 2,
+      "workerThread": 8,
+      "schedulerThread": 2,
+      "maxWebSocketRequestBytes": 1048576
+    },
+    "security": {
+      "hardwareTokenExpire": 28800,
+      "publicKeyTokenExpire": 28800,
+      "launcherTokenExpire": 28800
+    },
+    "binds": [
+      {
+        "address": "0.0.0.0",
+        "port": 9274
+      }
+    ],
+    "logLevel": "DEBUG"
+  },
+  "launcher": {
+    "compress": true,
+    "stripLineNumbers": true,
+    "deleteTempFiles": true,
+    "certificatePinning": false,
+    "encryptRuntime": false,
+    "customJvmOptions": [],
+    "memoryLimit": 256
+  },
+  "sign": {
+    "enabled": false,
+    "keyStore": "pathToKey",
+    "keyStoreType": "JKS",
+    "keyStorePass": "mypass",
+    "keyAlias": "myname",
+    "keyPass": "mypass",
+    "metaInfKeyName": "SIGNUMO.RSA",
+    "metaInfSfName": "SIGNUMO.SF",
+    "signAlgo": "SHA256WITHRSA",
+    "checkCertificateExpired": true
+  },
+  "startScript": "./start.sh"
+}
